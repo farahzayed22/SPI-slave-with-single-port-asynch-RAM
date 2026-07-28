@@ -1,0 +1,11 @@
+module SPI_wrapper(clk, rstn,mosi,miso,ss_n);
+    input clk,rstn,mosi,ss_n;
+    output miso;
+
+    wire [9:0] din;
+    wire [7:0] dout;
+    wire rx_valid,tx_valid;
+
+    SPI_slave SPI_slave_inst(.clk(clk),.rstn(rstn),.mosi(mosi),.miso(miso),.ss_n(ss_n),.din(din),.dout(dout),.rx_valid(rx_valid),.tx_valid(tx_valid));
+    asynch_ram asynch_ram_inst(.clk(clk),.rstn(rstn),.din(din),.dout(dout),.rx_valid(rx_valid),.tx_valid(tx_valid));
+endmodule
