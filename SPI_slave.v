@@ -1,8 +1,8 @@
 module SPI_slave(mosi, ss_n ,rx_data, rx_valid, clk, rstn, tx_data, tx_valid, miso);
     input mosi, ss_n, clk, rstn;
-    input [9:0]tx_data;
+    input [7:0]tx_data;
     input tx_valid;
-    output reg [7:0] rx_data;
+    output reg [9:0] rx_data;
     output reg rx_valid, miso;
 
     localparam IDLE=3'b000;
@@ -14,7 +14,6 @@ module SPI_slave(mosi, ss_n ,rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
     reg [2:0] current_state, next_state;
     reg [3:0] counter;
     reg [9:0] serial2Parallel;
-    reg [7:0] parallel2Serial;
     reg addr_received;
 
     always @(posedge clk) begin
@@ -61,7 +60,6 @@ module SPI_slave(mosi, ss_n ,rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
         if(~rstn)begin
             counter<=0;
             serial2Parallel<=0;
-            parallel2Serial<=0;
             addr_received<=0;
             rx_data<=0;
             rx_valid<=0;
@@ -72,10 +70,9 @@ module SPI_slave(mosi, ss_n ,rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
             IDLE:begin
                 counter<=0;
                 serial2Parallel<=0;
-                parallel2Serial<=0;
                 addr_received<=0;
-                rx_data<=0;
                 rx_valid<=0;
+                miso<=1'b0;
             end
 
             WRITE:begin
@@ -85,7 +82,7 @@ module SPI_slave(mosi, ss_n ,rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
                     rx_valid<=0;
                 end
                 else begin
-                    rx_data<=serial2Parallel[7:0];
+                    rx_data<=serial2Parallel;
                     rx_valid<=1;
                     counter<=0;
                 end
@@ -94,10 +91,8 @@ module SPI_slave(mosi, ss_n ,rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
             READ_DATA:begin
                 if(tx_valid)begin
                     rx_valid<=0;
-                    parallel2Serial<=tx_data;
                     if(counter<8)begin
-                        miso<=parallel2Serial[7];
-                        parallel2Serial<={parallel2Serial[6:0],1'b0};
+                        miso<=tx_data[7-counter];
                         counter<=counter+1;
                     end
                     else begin
@@ -109,11 +104,10 @@ module SPI_slave(mosi, ss_n ,rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
                     if(counter<10)begin
                         serial2Parallel<={serial2Parallel[8:0],mosi};
                         counter<=counter+1;
-                        miso<=1'b0;
                         rx_valid<=0;
                     end
                     else begin
-                        rx_data<=serial2Parallel[7:0];
+                        rx_data<=serial2Parallel;
                         rx_valid<=1;
                         counter<=0;
                     end
@@ -127,7 +121,7 @@ module SPI_slave(mosi, ss_n ,rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
                     rx_valid<=0;
                 end
                 else begin
-                    rx_data<=serial2Parallel[7:0];
+                    rx_data<=serial2Parallel;
                     rx_valid<=1;
                     addr_received<=1;
                     counter<=0;
@@ -135,17 +129,13 @@ module SPI_slave(mosi, ss_n ,rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
             end
             CHK_CMD:begin
                 counter<=0;
-                serial2Parallel<=0;
-                parallel2Serial<=0;
                 addr_received<=0;
-                rx_data<=0;
                 rx_valid<=0;
                 miso<=1'b0;
             end
             default:begin
                 counter<=0;
                 serial2Parallel<=0;
-                parallel2Serial<=0;
                 addr_received<=0;
                 rx_data<=0;
                 rx_valid<=0;

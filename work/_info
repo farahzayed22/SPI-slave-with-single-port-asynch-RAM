@@ -1,6 +1,26 @@
 m255
 K4
 z2
+Z0 !s99 nomlopt
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
 !s11f vlog 2021.1 2021.01, Jan 19 2021
 13
 !s112 1.1
@@ -8,49 +28,144 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-dC:/questasim64_2021.1/examples
-vasynch_ram
-!s110 1785221763
-!i10b 1
-!s100 Y@z66RdTN]DdzVY`MbzzY2
-IZiLYNQz6V8Vgg[oH]?B<>1
-Z0 dD:/Projects/questasim_projects/Digital_Diploma/SPI-slave-with-single-port-asynch-RAM
-w1785221526
-8D:/Projects/questasim_projects/Digital_Diploma/SPI-slave-with-single-port-asynch-RAM/asynch_ram.v
-FD:/Projects/questasim_projects/Digital_Diploma/SPI-slave-with-single-port-asynch-RAM/asynch_ram.v
-!i122 0
-L0 1 40
-Z1 VDg1SIo80bB@j0V0VzS_@n1
-Z2 OL;L;2021.1;73
-r1
-!s85 0
-31
-!s108 1785221763.000000
-!s107 D:/Projects/questasim_projects/Digital_Diploma/SPI-slave-with-single-port-asynch-RAM/asynch_ram.v|
-!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Projects/questasim_projects/Digital_Diploma/SPI-slave-with-single-port-asynch-RAM/asynch_ram.v|
-!i113 0
-Z3 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-Z4 tCvgOpt 0
-vSPI_slave
-!s110 1785221807
-!i10b 1
-!s100 P6Zm4z:4cW^_1mU=X]]]62
-I4?Nbg_W5^MM11:ObS4OQ?3
-R0
-w1785221797
-8D:/Projects/questasim_projects/Digital_Diploma/SPI-slave-with-single-port-asynch-RAM/SPI_slave.v
-FD:/Projects/questasim_projects/Digital_Diploma/SPI-slave-with-single-port-asynch-RAM/SPI_slave.v
-!i122 1
-L0 1 157
+Z1 dC:/questasim64_2021.1/examples
+T_opt
+!s110 1785307654
+Vhg^1]ac[e9MjEXRF_R=;:2
+Z2 04 14 4 work SPI_wrapper_tb fast 0
+=1-e02be9052af8-6a69a205-2bf-260c
+Z3 !s124 OEM100
+Z4 o-quiet -auto_acc_if_foreign -work work +acc
+Z5 tCvgOpt 0
+n@_opt
+Z6 OL;O;2021.1;73
 R1
+T_opt1
+!s110 1785500751
+Vom8mBYWe`ED_9j4OL7lUc3
 R2
-r1
-!s85 0
-31
-!s108 1785221807.000000
-!s107 D:/Projects/questasim_projects/Digital_Diploma/SPI-slave-with-single-port-asynch-RAM/SPI_slave.v|
-!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Projects/questasim_projects/Digital_Diploma/SPI-slave-with-single-port-asynch-RAM/SPI_slave.v|
-!i113 0
+=1-e02be9052af8-6a6c944e-30e-2aa0
 R3
 R4
+R5
+n@_opt1
+R6
+vasynch_ram
+Z7 !s110 1785500743
+!i10b 1
+!s100 V@LhNMA7^POAeaBzhYMzF1
+I5T;8XZW[Cl@cQgYiJZW]91
+Z8 dD:/Projects/questasim_projects/Digital_Diploma/SPI-slave-with-single-port-asynch-RAM
+w1785500151
+8asynch_ram.v
+Fasynch_ram.v
+!i122 28
+L0 1 42
+Z9 VDg1SIo80bB@j0V0VzS_@n1
+Z10 OL;L;2021.1;73
+r1
+!s85 0
+31
+Z11 !s108 1785500743.000000
+Z12 !s107 SPI_wrapper_tb.v|SPI_wrapper.v|SPI_slave.v|asynch_ram.v|
+Z13 !s90 -reportprogress|300|asynch_ram.v|SPI_slave.v|SPI_wrapper.v|SPI_wrapper_tb.v|+cover|-covercells|
+!i113 0
+Z14 !s102 +cover -covercells
+Z15 o+cover -covercells -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R5
+vslave_SPI
+R7
+!i10b 1
+!s100 @m<b2U8dT3nXlNEjaaUDU1
+IA?<3V<PE]WDRLn5;^X]SF0
+R8
+w1785499982
+Z16 8SPI_slave.v
+Z17 FSPI_slave.v
+!i122 28
+L0 1 164
+R9
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R15
+R5
+nslave_@s@p@i
+vSPI_slave
+!s110 1785499788
+!i10b 1
+!s100 iKETcX5C:dXFI[aDGN7`^0
+I[?6b:H;C?KkWb^lK?hARU2
+R8
+w1785499769
+R16
+R17
+!i122 23
+L0 1 168
+R9
+R10
+r1
+!s85 0
+31
+!s108 1785499788.000000
+R12
+R13
+!i113 0
+R14
+R15
+R5
 n@s@p@i_slave
+vSPI_wrapper
+R7
+!i10b 1
+!s100 3GDWAaCa49emWLbPjSfSB1
+I@YQT8`dUM>8RY]gRcN4ah1
+R8
+w1785499085
+8SPI_wrapper.v
+FSPI_wrapper.v
+!i122 28
+L0 1 11
+R9
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R15
+R5
+n@s@p@i_wrapper
+vSPI_wrapper_tb
+R7
+!i10b 1
+!s100 1?NCE]Boi3JL`2>9>m_cL3
+ISCf5AzDLIa5FWEkeClo;93
+R8
+w1785500738
+8SPI_wrapper_tb.v
+FSPI_wrapper_tb.v
+!i122 28
+L0 1 104
+R9
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R15
+R5
+n@s@p@i_wrapper_tb
