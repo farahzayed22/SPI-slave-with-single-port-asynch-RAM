@@ -17,7 +17,6 @@ module asynch_ram(din,clk,rstn,rx_valid,dout,tx_valid);
             rd_addr<=0;
         end
         else begin
-            tx_valid <= 1'b0;
             if(rx_valid)begin
                 case(din[9:8])
                 2'b00:begin 
@@ -31,14 +30,14 @@ module asynch_ram(din,clk,rstn,rx_valid,dout,tx_valid);
                 end
                 2'b11: begin 
                     dout<=mem[rd_addr];
-                    tx_valid<=1;
                 end
                 default:begin
                     dout<=0;
-                    tx_valid<=0;
+                    
                 end
                 endcase
             end
+            tx_valid<= (din[9:8]==2'b11 && rx_valid) ? 1'b1 : 1'b0;
         end
     end
 endmodule
