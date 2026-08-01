@@ -60,17 +60,16 @@ module SPI_slave(mosi, ss_n ,rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
         if(~rstn)begin
             counter<=0;
             serial2Parallel<=0;
-            addr_received<=0;
             rx_data<=0;
             rx_valid<=0;
             miso<=1'b0;
+            addr_received<=0;
         end 
         else begin
             case(current_state)
             IDLE:begin
                 counter<=0;
                 serial2Parallel<=0;
-                addr_received<=0;
                 rx_valid<=0;
                 miso<=1'b0;
             end
@@ -129,14 +128,12 @@ module SPI_slave(mosi, ss_n ,rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
             end
             CHK_CMD:begin
                 counter<=0;
-                addr_received<=0;
                 rx_valid<=0;
                 miso<=1'b0;
             end
             default:begin
                 counter<=0;
                 serial2Parallel<=0;
-                addr_received<=0;
                 rx_data<=0;
                 rx_valid<=0;
                 miso<=1'b0;

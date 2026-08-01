@@ -21,6 +21,15 @@ R0
 R0
 R0
 R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
 !s11f vlog 2021.1 2021.01, Jan 19 2021
 13
 !s112 1.1
@@ -41,32 +50,32 @@ n@_opt
 Z6 OL;O;2021.1;73
 R1
 T_opt1
-!s110 1785500751
-Vom8mBYWe`ED_9j4OL7lUc3
+!s110 1785503262
+V_glAki6gfj6N<_Ug^njU42
 R2
-=1-e02be9052af8-6a6c944e-30e-2aa0
+=1-e02be9052af8-6a6c9e1e-e0-4884
 R3
 R4
 R5
 n@_opt1
 R6
 vasynch_ram
-Z7 !s110 1785500743
+Z7 !s110 1785503261
 !i10b 1
-!s100 V@LhNMA7^POAeaBzhYMzF1
-I5T;8XZW[Cl@cQgYiJZW]91
+!s100 PJN8zg4Ni1D8ikFLWID>70
+ITM9OS2>e`SiP6eYBoaBL_3
 Z8 dD:/Projects/questasim_projects/Digital_Diploma/SPI-slave-with-single-port-asynch-RAM
-w1785500151
+w1785501783
 8asynch_ram.v
 Fasynch_ram.v
-!i122 28
-L0 1 42
+!i122 37
+L0 1 46
 Z9 VDg1SIo80bB@j0V0VzS_@n1
 Z10 OL;L;2021.1;73
 r1
 !s85 0
 31
-Z11 !s108 1785500743.000000
+Z11 !s108 1785503261.000000
 Z12 !s107 SPI_wrapper_tb.v|SPI_wrapper.v|SPI_slave.v|asynch_ram.v|
 Z13 !s90 -reportprogress|300|asynch_ram.v|SPI_slave.v|SPI_wrapper.v|SPI_wrapper_tb.v|+cover|-covercells|
 !i113 0
@@ -74,7 +83,7 @@ Z14 !s102 +cover -covercells
 Z15 o+cover -covercells -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R5
 vslave_SPI
-R7
+!s110 1785500743
 !i10b 1
 !s100 @m<b2U8dT3nXlNEjaaUDU1
 IA?<3V<PE]WDRLn5;^X]SF0
@@ -89,7 +98,7 @@ R10
 r1
 !s85 0
 31
-R11
+!s108 1785500743.000000
 R12
 R13
 !i113 0
@@ -98,22 +107,22 @@ R15
 R5
 nslave_@s@p@i
 vSPI_slave
-!s110 1785499788
+R7
 !i10b 1
-!s100 iKETcX5C:dXFI[aDGN7`^0
-I[?6b:H;C?KkWb^lK?hARU2
+!s100 QKz^dnBVG_RAA>W6^gz901
+I4OFl?e[?543XkX788e<c91
 R8
-w1785499769
+w1785503257
 R16
 R17
-!i122 23
-L0 1 168
+!i122 37
+L0 1 144
 R9
 R10
 r1
 !s85 0
 31
-!s108 1785499788.000000
+R11
 R12
 R13
 !i113 0
@@ -124,13 +133,13 @@ n@s@p@i_slave
 vSPI_wrapper
 R7
 !i10b 1
-!s100 3GDWAaCa49emWLbPjSfSB1
-I@YQT8`dUM>8RY]gRcN4ah1
+!s100 MoaYH<A7bWWAl7>Q5MaY:3
+IJH_XVND:YXT3B36YDn;:[2
 R8
-w1785499085
+w1785501387
 8SPI_wrapper.v
 FSPI_wrapper.v
-!i122 28
+!i122 37
 L0 1 11
 R9
 R10
@@ -148,14 +157,14 @@ n@s@p@i_wrapper
 vSPI_wrapper_tb
 R7
 !i10b 1
-!s100 1?NCE]Boi3JL`2>9>m_cL3
-ISCf5AzDLIa5FWEkeClo;93
+!s100 o[G@@cZZo_gFU5kL1I41_1
+I;HJcAQdl@E0egh[<KRQhO0
 R8
-w1785500738
+w1785502847
 8SPI_wrapper_tb.v
 FSPI_wrapper_tb.v
-!i122 28
-L0 1 104
+!i122 37
+L0 1 97
 R9
 R10
 r1

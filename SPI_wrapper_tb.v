@@ -11,7 +11,7 @@ module SPI_wrapper_tb();
 
     integer i;
     initial begin
-        // $readmemh ("ram.dat", dut.ram.mem);
+        $readmemh ("ram.dat", dut.ram.mem);
         i = 0;
         randomized_address = 0;
         //test reset
