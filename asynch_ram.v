@@ -17,19 +17,17 @@ module asynch_ram(din,clk,rstn,rx_valid,dout,tx_valid);
             rd_addr<=0;
         end
         else begin
+            tx_valid <= 1'b0;
             if(rx_valid)begin
                 case(din[9:8])
                 2'b00:begin 
                     wr_addr<=din[7:0];
-                    tx_valid<=0;
                 end
                 2'b01:begin
                     mem[wr_addr]<=din[7:0];
-                    tx_valid<=1;
                 end
                 2'b10:begin 
                     rd_addr<=din[7:0]; 
-                    tx_valid<=0; 
                 end
                 2'b11: begin 
                     dout<=mem[rd_addr];
