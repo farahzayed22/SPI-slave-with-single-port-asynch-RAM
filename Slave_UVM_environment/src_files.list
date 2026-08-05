@@ -1,0 +1,17 @@
+slave_SVA.sv
+slave_ref_model.v
+SPI_slave.v
+slave_Interface.sv
+slave_seq_item.sv
+slave_sequencer.sv
+slave_main_seq.sv
+slave_reset_seq.sv
+slave_Config.sv
+slave_driver.sv
+slave_monitor.sv
+slave_agent.sv
+slave_scoreboard.sv
+slave_coverage_collector.sv
+slave_Env.sv
+slave_Test.sv
+slave_Top.sv
