@@ -1,0 +1,209 @@
+COVERGROUP COVERAGE:
+----------------------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal       Bins    Status               
+                                                                                                         
+----------------------------------------------------------------------------------------------------------
+ TYPE /slave_coverage_collector_pkg/slave_coverage_collector/slave_cvg_gp 
+                                                      100.00%        100          -    Covered              
+    covered/total bins:                                    23         23          -                      
+    missing/total bins:                                     0         23          -                      
+    % Hit:                                            100.00%        100          -                      
+    type_option.weight=1
+    type_option.goal=100
+    type_option.comment=
+    type_option.strobe=0
+    type_option.merge_instances=auto(0)
+    Coverpoint rx_data_cp                             100.00%        100          -    Covered              
+        covered/total bins:                                 7          7          -                      
+        missing/total bins:                                 0          7          -                      
+        % Hit:                                        100.00%        100          -                      
+        type_option.weight=1
+        type_option.goal=100
+        type_option.comment=
+    Coverpoint ss_n_cp                                100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        type_option.weight=1
+        type_option.goal=100
+        type_option.comment=
+    Coverpoint mosi_cp                                100.00%        100          -    Covered              
+        covered/total bins:                                 4          4          -                      
+        missing/total bins:                                 0          4          -                      
+        % Hit:                                        100.00%        100          -                      
+        type_option.weight=1
+        type_option.goal=100
+        type_option.comment=
+    Cross crs_cove_ssn_rxdata                         100.00%        100          -    Covered              
+        covered/total bins:                                 6          6          -                      
+        missing/total bins:                                 0          6          -                      
+        % Hit:                                        100.00%        100          -                      
+        type_option.weight=1
+        type_option.goal=100
+        type_option.comment=
+    Cross crs_cove_ssn_mosi                           100.00%        100          -    Covered              
+        covered/total bins:                                 4          4          -                      
+        missing/total bins:                                 0          4          -                      
+        % Hit:                                        100.00%        100          -                      
+        type_option.weight=1
+        type_option.goal=100
+        type_option.comment=
+ Covergroup instance \/slave_coverage_collector_pkg::slave_coverage_collector::slave_cvg_gp  
+                                                      100.00%        100          -    Covered              
+    covered/total bins:                                    23         23          -                      
+    missing/total bins:                                     0         23          -                      
+    % Hit:                                            100.00%        100          -                      
+    option.name=\/slave_coverage_collector_pkg::slave_coverage_collector::slave_cvg_gp 
+    option.weight=1
+    option.goal=100
+    option.comment=
+    option.at_least=1
+    option.auto_bin_max=64
+    option.cross_num_print_missing=0
+    option.detect_overlap=0
+    option.per_instance=0
+    option.get_inst_coverage=0
+    Coverpoint rx_data_cp                             100.00%        100          -    Covered              
+        covered/total bins:                                 7          7          -                      
+        missing/total bins:                                 0          7          -                      
+        % Hit:                                        100.00%        100          -                      
+        option.weight=1
+        option.goal=100
+        option.comment=
+        option.at_least=1
+        option.auto_bin_max=64
+        option.detect_overlap=0
+        bin WR_ADDR                                       690          1          -    Covered              
+        bin WR_DATA                                        59          1          -    Covered              
+        bin RD_ADDR                                        94          1          -    Covered              
+        bin RD_DATA                                       158          1          -    Covered              
+        bin trans_00_01                                     2          1          -    Covered              
+        bin trans_10_11                                     3          1          -    Covered              
+        bin trans_11_00                                     3          1          -    Covered              
+    Coverpoint ss_n_cp                                100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        option.weight=1
+        option.goal=100
+        option.comment=
+        option.at_least=1
+        option.auto_bin_max=64
+        option.detect_overlap=0
+        bin normal_ops_trns                                45          1          -    Covered              
+        bin rd_data_op_trns                                15          1          -    Covered              
+    Coverpoint mosi_cp                                100.00%        100          -    Covered              
+        covered/total bins:                                 4          4          -                      
+        missing/total bins:                                 0          4          -                      
+        % Hit:                                        100.00%        100          -                      
+        option.weight=1
+        option.goal=100
+        option.comment=
+        option.at_least=1
+        option.auto_bin_max=64
+        option.detect_overlap=0
+        bin wr_addr                                       147          1          -    Covered              
+        bin wr_data                                       130          1          -    Covered              
+        bin rd_addr                                       127          1          -    Covered              
+        bin rd_data                                       149          1          -    Covered              
+    Cross crs_cove_ssn_rxdata                         100.00%        100          -    Covered              
+        covered/total bins:                                 6          6          -                      
+        missing/total bins:                                 0          6          -                      
+        % Hit:                                        100.00%        100          -                      
+        option.weight=1
+        option.goal=100
+        option.comment=
+        option.at_least=1
+        option.cross_num_print_missing=0
+        Auto, Default and User Defined Bins:
+            bin rd_data_ssn_trns                            1          1          -    Covered              
+            bin normal_ops_ssn_trns                        37          1          -    Covered              
+            bin <RD_DATA,normal_ops_trns>                   8          1          -    Covered              
+            bin <RD_ADDR,rd_data_op_trns>                   1          1          -    Covered              
+            bin <WR_DATA,rd_data_op_trns>                   1          1          -    Covered              
+            bin <WR_ADDR,rd_data_op_trns>                  12          1          -    Covered              
+        Illegal and Ignore Bins:
+            ignore_bin ig_trans_11_00                       0                     -    ZERO                 
+            ignore_bin ig_trans_10_11                       0                     -    ZERO                 
+            ignore_bin ig_trans_00_01                       0                     -    ZERO                 
+    Cross crs_cove_ssn_mosi                           100.00%        100          -    Covered              
+        covered/total bins:                                 4          4          -                      
+        missing/total bins:                                 0          4          -                      
+        % Hit:                                        100.00%        100          -                      
+        option.weight=1
+        option.goal=100
+        option.comment=
+        option.at_least=1
+        option.cross_num_print_missing=0
+        Auto, Default and User Defined Bins:
+            bin <rd_data,rd_data_op_trns>                   1          1          -    Covered              
+            bin <rd_addr,normal_ops_trns>                   8          1          -    Covered              
+            bin <wr_data,normal_ops_trns>                   6          1          -    Covered              
+            bin <wr_addr,normal_ops_trns>                   9          1          -    Covered              
+        Illegal and Ignore Bins:
+            ignore_bin rd_addr_with_rddata_trs              3                     -    Occurred             
+            ignore_bin wr_data_with_rddata_trs              2                     -    Occurred             
+            ignore_bin wr_addr_with_rddata_trs              1                     -    Occurred             
+            ignore_bin normal_ops_with_rddata               3                     -    Occurred             
+
+TOTAL COVERGROUP COVERAGE: 100.00%  COVERGROUP TYPES: 1
+
+DIRECTIVE COVERAGE:
+--------------------------------------------------------------------------------------------
+Name                                     Design Design   Lang File(Line)      Hits Status    
+                                         Unit   UnitType                                     
+--------------------------------------------------------------------------------------------
+/slave_Top/slave/c_trans_from_idle_to_cmd 
+                                         SPI_slave Verilog  SVA  SPI_slave.v(176)  95 Covered   
+/slave_Top/slave/c_trans_from_cmd_to_write 
+                                         SPI_slave Verilog  SVA  SPI_slave.v(189)  45 Covered   
+/slave_Top/slave/c_trans_from_cmd_to_read_address 
+                                         SPI_slave Verilog  SVA  SPI_slave.v(202)  40 Covered   
+/slave_Top/slave/c_trans_from_cmd_to_read_data 
+                                         SPI_slave Verilog  SVA  SPI_slave.v(215)   5 Covered   
+/slave_Top/slave/c_trans_from_write_to_idle 
+                                         SPI_slave Verilog  SVA  SPI_slave.v(228)  30 Covered   
+/slave_Top/slave/c_trans_from_read_address_to_idle 
+                                         SPI_slave Verilog  SVA  SPI_slave.v(241)  21 Covered   
+/slave_Top/slave/c_trans_from_read_data_to_idle 
+                                         SPI_slave Verilog  SVA  SPI_slave.v(254)   2 Covered   
+/slave_Top/slave/slave_sva/cv_reset_outputs 
+                                         slave_SVA Verilog  SVA  slave_SVA.sv(15)  53 Covered   
+/slave_Top/slave/slave_sva/cv_wr_addr_data_seq 
+                                         slave_SVA Verilog  SVA  slave_SVA.sv(25)   5 Covered   
+/slave_Top/slave/slave_sva/cv_rd_addr_seq 
+                                         slave_SVA Verilog  SVA  slave_SVA.sv(35)   1 Covered   
+/slave_Top/slave/slave_sva/cv_rd_data_seq 
+                                         slave_SVA Verilog  SVA  slave_SVA.sv(43)   2 Covered   
+
+TOTAL DIRECTIVE COVERAGE: 100.00%  COVERS: 11
+
+ASSERTION RESULTS:
+--------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass 
+                                                  Count        Count
+--------------------------------------------------------------------
+/slave_Top/slave/a_trans_from_idle_to_cmd
+                     SPI_slave.v(174)                   0          1
+/slave_Top/slave/a_trans_from_cmd_to_write
+                     SPI_slave.v(187)                   0          1
+/slave_Top/slave/a_trans_from_cmd_to_read_address
+                     SPI_slave.v(200)                   0          1
+/slave_Top/slave/a_trans_from_cmd_to_read_data
+                     SPI_slave.v(213)                   0          1
+/slave_Top/slave/a_trans_from_write_to_idle
+                     SPI_slave.v(226)                   0          1
+/slave_Top/slave/a_trans_from_read_address_to_idle
+                     SPI_slave.v(239)                   0          1
+/slave_Top/slave/a_trans_from_read_data_to_idle
+                     SPI_slave.v(252)                   0          1
+/slave_Top/slave/slave_sva/a_reset_outputs
+                     slave_SVA.sv(14)                   0          1
+/slave_Top/slave/slave_sva/a_wr_addr_data_seq
+                     slave_SVA.sv(24)                   0          1
+/slave_Top/slave/slave_sva/a_rd_addr_seq
+                     slave_SVA.sv(34)                   0          1
+/slave_Top/slave/slave_sva/a_rd_data_seq
+                     slave_SVA.sv(42)                   0          1
+/slave_main_seq_pkg/slave_main_seq/body/#ublk#173340615#16/immed__18
+                     slave_main_seq.sv(18)              0          1

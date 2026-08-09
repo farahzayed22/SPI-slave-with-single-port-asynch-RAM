@@ -10,7 +10,7 @@ package slave_seq_item_pkg;
         rand logic tx_valid;
         logic [9:0] rx_data;
         logic rx_valid, miso;
-
+        
         // ref outputs
         logic [9:0] rx_data_ref;
         logic rx_valid_ref, miso_ref;
@@ -66,13 +66,13 @@ package slave_seq_item_pkg;
 
         constraint mosi_randomization {
             if (ss_n == 0) {
-                if (cycle_count == 0)      mosi == op_code[2];
-                else if (cycle_count == 1) mosi == op_code[1];
-                else if (cycle_count == 2) mosi == op_code[0];
+                if (cycle_count == 0)      mosi== op_code[2];
+                else if (cycle_count == 1) mosi== op_code[1];
+                else if (cycle_count == 2) mosi== op_code[0];
+    
             }
         }
-
-
+      
         constraint tx_valid_randomization {
             if (cycle_count >= 15) { tx_valid == 1; }
             else { tx_valid == 0; }

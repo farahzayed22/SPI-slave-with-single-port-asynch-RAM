@@ -13,7 +13,7 @@ package RAM_Test_pkg;
 
         RAM_Env env;
         RAM_Config cfg;
-        virtual RAM_if RAM_vif;
+        virtual RAM_Interface RAM_vif;
         RAM_write_only_seq write_seq;
         RAM_read_only_seq read_seq;
         RAM_read_write_seq read_write_seq;

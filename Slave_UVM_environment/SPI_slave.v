@@ -13,9 +13,9 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
 
     reg [2:0] current_state, next_state;
     reg [3:0] counter;
-    // reg [9:0] serial2Parallel;
-    // reg [7:0] parallel2Serial;
-    // reg tx_busy;
+    reg [9:0] serial2Parallel;
+    reg [7:0] parallel2Serial;
+    reg tx_busy;
     reg addr_received;
 
     
@@ -27,7 +27,7 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
     end
 
    
-     always @(*) begin 
+    always @(*) begin 
         case (current_state)
             IDLE: begin
                 if (ss_n) next_state = IDLE;
@@ -60,73 +60,106 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
     end
 
     
-    always @(posedge clk) begin 
-    if (~rstn) begin 
-        rx_data <= 0;
-        rx_valid <= 0;
-        addr_received <= 0;
-        miso <= 0; 
-        counter <= 0;
-    end
-    else begin
-        case (current_state)
-            IDLE : begin
-                rx_valid <= 0;
-                miso<=0;
-            end
-            CHK_CMD : begin
-                counter <= 10;  
-                miso<=0;    
-            end
-            WRITE : begin
-                if (counter > 0) begin
-                    rx_data[counter-1] <= mosi;
-                    counter <= counter - 1;
+    always @(posedge clk) begin
+        if (~rstn) begin
+            counter         <= 0;
+            serial2Parallel <= 0;
+            parallel2Serial <= 0;
+            rx_data         <= 0;
+            rx_valid        <= 0;
+            miso            <= 1'b0;
+            addr_received   <= 0;
+            tx_busy         <= 0;
+        end 
+        else begin
+            case (current_state)
+                IDLE: begin
+                    counter         <= 0;
+                    serial2Parallel <= 0;
+                    rx_valid        <= 0;
+                    miso            <= 1'b0;
+                    tx_busy         <= 0;
                 end
-                else begin
-                    rx_valid <= 1;
+
+                WRITE: begin
+                    if (counter < 10) begin
+                        serial2Parallel <= {serial2Parallel[8:0], mosi};
+                        counter         <= counter + 1;
+                        rx_valid        <= 0;
+                    end
+                    else begin
+                        rx_data  <= serial2Parallel;
+                        rx_valid <= 1'b1;
+                        counter  <= 0;
+                    end
                 end
-            end
-            READ_ADD : begin
-                if (counter > 0 ) begin
-                    rx_data[counter-1] <= mosi;
-                    counter <= counter - 1;
+
+                READ_DATA: begin
+                    // Latch tx_data on 1-cycle tx_valid pulse & drive bit MSB immediately
+                    if (tx_valid && !tx_busy) begin
+                        rx_valid        <= 1'b0;
+                        parallel2Serial <= tx_data;
+                        miso            <= tx_data[7]; 
+                        tx_busy         <= 1'b1;
+                        counter         <= 4'd1;       
+                    end
+                    else if (tx_busy) begin
+                        if (counter < 8) begin
+                            miso    <= parallel2Serial[7 - counter];
+                            counter <= counter + 1;
+                        end
+                        else begin
+                            addr_received <= 1'b0; 
+                            counter       <= 0;
+                            tx_busy       <= 1'b0;
+                            miso          <= 1'b0;
+                        end 
+                    end
+                    else if (!tx_valid) begin
+                        if (counter < 10) begin
+                            serial2Parallel <= {serial2Parallel[8:0], mosi};
+                            counter         <= counter + 1;
+                            rx_valid        <= 1'b0;
+                        end
+                        else begin
+                            rx_data  <= serial2Parallel;
+                            rx_valid <= 1'b1;
+                            counter  <= 0;
+                        end
+                    end 
                 end
-                else begin
-                    rx_valid <= 1;
-                    addr_received <= 1;
+                READ_ADD: begin
+                    if (counter < 10) begin
+                        serial2Parallel <= {serial2Parallel[8:0], mosi};
+                        counter         <= counter + 1;
+                        rx_valid        <= 0;
+                    end
+                    else begin
+                        rx_data       <= serial2Parallel;
+                        rx_valid      <= 1'b1;
+                        addr_received <= 1'b1;
+                        counter       <= 0;
+                    end
                 end
-            end
-            READ_DATA : begin
-                if (tx_valid) begin
+
+                CHK_CMD: begin
+                    counter  <= 0;
                     rx_valid <= 0;
-                    if (counter > 0 ) begin
-                        miso <= tx_data[counter-1]; 
-                        counter <= counter - 1;
-                    end
-                    else begin
-                        addr_received <= 0;
-                    end
+                    miso     <= 1'b0;
                 end
-                else begin
-                    if (counter > 0) begin
-                        rx_data[counter-1] <= mosi;
-                        counter <= counter - 1;
-                    end
-                    else begin
-                        rx_valid <= 1;
-                        counter <= 8;  /// BUG FIXED
-                    end
+
+                default: begin
+                    counter         <= 0;
+                    serial2Parallel <= 0;
+                    rx_data         <= 0;
+                    rx_valid        <= 0;
+                    miso            <= 1'b0;
+                    tx_busy         <= 0;
                 end
-                
-            end
-            default : begin
-                counter <= 0;
-                miso <= 1'b0;
-            end
-        endcase
-        end
-    end
+            endcase
+        end 
+    end 
+
 
     `ifdef SIM
 

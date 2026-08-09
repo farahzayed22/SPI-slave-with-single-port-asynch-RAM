@@ -1,0 +1,67 @@
+// 1. Interfaces
+wrapper_Interface.sv
+RAM_Interface.sv
+slave_Interface.sv
+
+// 2. RTL Design Files & Reference Models & SVAs
+asynch_ram.v
+SPI_slave.v
+SPI_wrapper.v
+slave_ref_model.v
+wrapper_ref_model.v
+RAM_SVA.sv
+slave_SVA.sv
+wrapper_SVA.sv
+
+// 3. Configurations (MUST be compiled before Drivers/Agents/Envs)
+RAM_Config.sv
+slave_Config.sv
+wrapper_Config.sv
+
+// 4. Sequence Items
+RAM_seq_item.sv
+slave_seq_item.sv
+wrapper_seq_item.sv
+
+// 5. Sequences
+RAM_write_only_seq.sv
+RAM_read_only_seq.sv
+RAM_read_write_seq.sv
+RAM_reset_seq.sv
+slave_main_seq.sv
+slave_reset_seq.sv
+wrapper_write_only_seq.sv
+wrapper_read_only_seq.sv
+wrapper_read_write_seq.sv
+wrapper_reset_seq.sv
+
+// 6. RAM Verification Components & Env
+RAM_sequencer.sv
+RAM_driver.sv
+RAM_monitor.sv
+RAM_agent.sv
+RAM_scoreboard.sv
+RAM_coverage_collector.sv
+RAM_Env.sv
+
+// 7. Slave Verification Components & Env
+slave_sequencer.sv
+slave_driver.sv
+slave_monitor.sv
+slave_agent.sv
+slave_scoreboard.sv
+slave_coverage_collector.sv
+slave_Env.sv
+
+// 8. Wrapper Verification Components & Env
+wrapper_sequencer.sv
+wrapper_driver.sv
+wrapper_monitor.sv
+wrapper_agent.sv
+wrapper_scoreboard.sv
+wrapper_coverage_collector.sv
+wrapper_Env.sv
+
+// 9. Test & Top
+wrapper_Test.sv
+wrapper_Top.sv

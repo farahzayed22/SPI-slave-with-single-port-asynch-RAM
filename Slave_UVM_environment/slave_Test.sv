@@ -12,7 +12,7 @@ package slave_Test_pkg;
 
         slave_Env env;
         slave_Config cfg;
-        virtual slave_if slave_vif;
+        virtual slave_Interface slave_vif;
         slave_main_seq main_seq;
         slave_reset_seq reset_seq;
 
