@@ -1,4 +1,4 @@
-module asynch_ram(din,clk,rstn,rx_valid,dout,tx_valid);
+module synch_ram(din,clk,rstn,rx_valid,dout,tx_valid);
     parameter MEM_DEPTH=256;
     parameter ADDR_SIZE=8;
     input [9:0] din;

@@ -18,7 +18,6 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
     reg tx_busy;
     reg addr_received;
 
-    
     always @(posedge clk) begin
         if (~rstn)
             current_state <= IDLE;
@@ -26,7 +25,6 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
             current_state <= next_state;
     end
 
-   
     always @(*) begin 
         case (current_state)
             IDLE: begin
@@ -59,7 +57,6 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
         endcase
     end
 
-    
     always @(posedge clk) begin
         if (~rstn) begin
             counter         <= 0;
@@ -79,6 +76,12 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
                     rx_valid        <= 0;
                     miso            <= 1'b0;
                     tx_busy         <= 0;
+                end
+                
+                CHK_CMD: begin
+                    counter  <= 0;
+                    rx_valid <= 0;
+                    miso     <= 1'b0;
                 end
 
                 WRITE: begin
@@ -141,13 +144,6 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
                         counter       <= 0;
                     end
                 end
-
-                CHK_CMD: begin
-                    counter  <= 0;
-                    rx_valid <= 0;
-                    miso     <= 1'b0;
-                end
-
                 default: begin
                     counter         <= 0;
                     serial2Parallel <= 0;
@@ -158,7 +154,5 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
                 end
             endcase
         end 
-    end 
-
-    
+    end   
 endmodule
