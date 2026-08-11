@@ -32,7 +32,7 @@ This project implements an SPI Slave with Single-Port RAM Interface wrapped insi
 ### 3. SPI Slave Controller (SPI_slave)
 The SPI Slave handles protocol frame synchronization, serial-to-parallel input conversion (`MOSI`), and parallel-to-serial output conversion (`MISO`).
 
-* **Fininte state machins**: 
+* **Fininte state machine**: 
 ![FSM](FSM.png)
     * Driven by a 5-state FSM:
     * `IDLE`: Default state on reset (rst_n = 0) or when Master is inactive (SS_n = 1).  
