@@ -27,6 +27,7 @@ package RAM_seq_item_pkg;
         constraint reset_deassertion{
             rstn dist{0:/5 , 1:/95};
         }
+        
         constraint rx_valid_assertion{
             rx_valid dist{0:/20 , 1:/80};
         }

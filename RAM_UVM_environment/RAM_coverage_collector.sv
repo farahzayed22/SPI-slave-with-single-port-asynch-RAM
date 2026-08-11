@@ -74,4 +74,5 @@ package RAM_coverage_collector_pkg;
             end
         endtask
     endclass
+    
 endpackage

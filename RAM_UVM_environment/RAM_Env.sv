@@ -28,6 +28,7 @@ package RAM_Env_pkg;
       agent.agt_ap.connect(sb.sb_export);
       agent.agt_ap.connect(cov.cov_export);
     endfunction
+    
     endclass
 endpackage 
 

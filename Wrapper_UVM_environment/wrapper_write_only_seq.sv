@@ -34,5 +34,5 @@ package wrapper_write_only_seq_pkg;
             end
         endtask
     endclass
-
 endpackage 
+

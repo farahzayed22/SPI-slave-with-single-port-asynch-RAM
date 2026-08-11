@@ -7,13 +7,16 @@ package RAM_driver_pkg;
 
   virtual RAM_Interface RAM_driver_vif;
   RAM_seq_item dv_seq_item;
+
   function new(string name="RAM_driver",uvm_component parent=null);
     super.new(name,parent);
   endfunction
+
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     dv_seq_item=RAM_seq_item::type_id::create("dv_seq_item");
   endfunction
+  
   task run_phase(uvm_phase phase);
     super.run_phase(phase);
           RAM_driver_vif.din=0;

@@ -55,6 +55,5 @@ module RAM_SVA(din,clk,rstn,rx_valid,dout,tx_valid);
     assert_read_addr_then_read_data: assert property(read_addr_then_read_data)
         else $error("read address is not followed by read data");
     cover_read_addr_then_read_data: cover property(read_addr_then_read_data);
-
-    
 endmodule
+

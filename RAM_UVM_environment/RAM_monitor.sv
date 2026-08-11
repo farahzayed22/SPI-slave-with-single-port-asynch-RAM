@@ -31,6 +31,7 @@ package RAM_monitor_pkg;
           mon_ap.write(mn_seq_item);
           `uvm_info("monitor run_phase",mn_seq_item.convert2string_stimulus(),UVM_HIGH) 
       end
+      
   endtask
   endclass
 endpackage

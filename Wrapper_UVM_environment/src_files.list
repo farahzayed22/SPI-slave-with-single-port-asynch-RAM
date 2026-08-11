@@ -4,7 +4,7 @@ RAM_Interface.sv
 slave_Interface.sv
 
 // 2. RTL Design Files & Reference Models & SVAs
-asynch_ram.v
+synch_ram.v
 SPI_slave.v
 SPI_wrapper.v
 slave_ref_model.v

@@ -7,5 +7,6 @@ module wrapper_ref_model(clk, rstn,mosi,miso,ss_n);
     wire rx_valid,tx_valid;
   
     slave_ref_model slave(mosi, ss_n ,rx_data, rx_valid, clk, rstn, tx_data, tx_valid, miso);
-    asynch_ram ram(rx_data,clk,rstn,rx_valid,tx_data,tx_valid);
+    synch_ram ram(rx_data,clk,rstn,rx_valid,tx_data,tx_valid);
 endmodule
+

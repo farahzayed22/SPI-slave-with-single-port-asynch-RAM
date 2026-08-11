@@ -8,7 +8,7 @@ module wrapper_Top;
 
     
     RAM_Interface ram_if(clk);
-    asynch_ram ram(
+    synch_ram ram(
         .din(ram_if.din),
         .clk(ram_if.clk),
         .rstn(ram_if.rstn),
@@ -16,7 +16,7 @@ module wrapper_Top;
         .dout(ram_if.dout),
         .tx_valid(ram_if.tx_valid)
     );
-   bind asynch_ram RAM_SVA ram_sva(ram_if.din,ram_if.clk,ram_if.rstn,ram_if.rx_valid,ram_if.dout,ram_if.tx_valid);
+   bind synch_ram RAM_SVA ram_sva(ram_if.din,ram_if.clk,ram_if.rstn,ram_if.rx_valid,ram_if.dout,ram_if.tx_valid);
     slave_Interface slave_if(clk);
     slave_ref_model slave_ref (
         .mosi        (slave_if.mosi),

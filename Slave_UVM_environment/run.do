@@ -14,3 +14,4 @@ add wave /slave_Top/slave/slave_sva/a_wr_addr_data_seq
 add wave /slave_Top/slave/slave_sva/a_rd_addr_seq
 add wave /slave_Top/slave/slave_sva/a_rd_data_seq
 run -all
+

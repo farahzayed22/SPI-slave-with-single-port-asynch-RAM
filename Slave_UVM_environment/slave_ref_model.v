@@ -26,7 +26,7 @@ module slave_ref_model(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_val
             current_state <= next_state;
     end
 
-   
+
     always @(*) begin 
         case (current_state)
             IDLE: begin

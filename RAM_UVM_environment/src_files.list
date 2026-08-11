@@ -1,5 +1,5 @@
 RAM_SVA.sv
-asynch_ram.v
+synch_ram.v
 RAM_Interface.sv
 RAM_seq_item.sv
 RAM_sequencer.sv
@@ -16,3 +16,4 @@ RAM_coverage_collector.sv
 RAM_Env.sv
 RAM_Test.sv
 RAM_Top.sv
+

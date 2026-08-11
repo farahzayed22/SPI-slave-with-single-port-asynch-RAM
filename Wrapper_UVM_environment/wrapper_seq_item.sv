@@ -46,14 +46,6 @@ package wrapper_seq_item_pkg;
             rstn dist {0:/5, 1:/95};
         }
 
-        // constraint opcode_constraint {
-        //     opcode inside {WR_ADDR, WR_DATA, RD_ADDR, RD_DATA};
-        //     // Force opcode to stay identical to active frame opcode during ongoing bursts
-        //     if (cycle_count > 0) {
-        //         opcode == current_frame_op;
-        //     }
-        // }
-
         constraint ss_n_assertion {
             if (opcode == RD_DATA) {
                 if (cycle_count <23) ss_n == 0; // Cycle 23 (index 22) high

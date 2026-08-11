@@ -10,5 +10,6 @@ package RAM_sequencer_pkg;
         function new( string name ="RAM_sequencer", uvm_component parent= null);
             super.new(name,parent);
         endfunction
+        
     endclass
 endpackage

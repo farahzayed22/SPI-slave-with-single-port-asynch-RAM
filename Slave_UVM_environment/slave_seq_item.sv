@@ -73,6 +73,7 @@ package slave_seq_item_pkg;
             }
         }
       
+      
         constraint tx_valid_randomization {
             if (cycle_count >= 15) { tx_valid == 1; }
             else { tx_valid == 0; }

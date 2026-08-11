@@ -43,3 +43,4 @@ module slave_SVA(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
     cv_rd_data_seq: cover property(p_rd_data_seq);
 
 endmodule
+

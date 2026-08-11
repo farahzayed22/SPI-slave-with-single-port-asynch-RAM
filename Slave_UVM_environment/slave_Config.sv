@@ -11,3 +11,4 @@ class slave_Config extends uvm_object;
     endfunction
 endclass
 endpackage
+

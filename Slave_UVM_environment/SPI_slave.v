@@ -163,9 +163,7 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
 
     `ifdef SIM
 
-        // -------------------------------------------------------------------------
         // 1. IDLE -> CHK_CMD
-        // -------------------------------------------------------------------------
         property p_trans_from_idle_to_cmd;
             @(posedge clk) disable iff (~rstn)
             (current_state == IDLE && ~ss_n) |=> (current_state == CHK_CMD);
@@ -176,9 +174,7 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
         c_trans_from_idle_to_cmd: cover property(p_trans_from_idle_to_cmd);
 
 
-        // -------------------------------------------------------------------------
         // 2. CHK_CMD -> WRITE
-        // -------------------------------------------------------------------------
         property p_trans_from_cmd_to_write;
             @(posedge clk) disable iff (~rstn)
             (current_state == CHK_CMD && ~mosi && ~ss_n) |=> (current_state == WRITE);
@@ -189,9 +185,7 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
         c_trans_from_cmd_to_write: cover property(p_trans_from_cmd_to_write);
 
 
-        // -------------------------------------------------------------------------
         // 3. CHK_CMD -> READ_ADD
-        // -------------------------------------------------------------------------
         property p_trans_from_cmd_to_read_address;
             @(posedge clk) disable iff (~rstn)
             (current_state == CHK_CMD && mosi && ~addr_received && ~ss_n) |=> (current_state == READ_ADD);
@@ -202,9 +196,7 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
         c_trans_from_cmd_to_read_address: cover property(p_trans_from_cmd_to_read_address);
 
 
-        // -------------------------------------------------------------------------
         // 4. CHK_CMD -> READ_DATA
-        // -------------------------------------------------------------------------
         property p_trans_from_cmd_to_read_data;
             @(posedge clk) disable iff (~rstn)
             (current_state == CHK_CMD && mosi && addr_received && ~ss_n) |=> (current_state == READ_DATA);
@@ -215,9 +207,7 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
         c_trans_from_cmd_to_read_data: cover property(p_trans_from_cmd_to_read_data);
 
 
-        // -------------------------------------------------------------------------
         // 5. WRITE -> IDLE
-        // -------------------------------------------------------------------------
         property p_trans_from_write_to_idle;
             @(posedge clk) disable iff (~rstn)
             (current_state == WRITE && ss_n) |=> (current_state == IDLE);
@@ -228,9 +218,7 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
         c_trans_from_write_to_idle: cover property(p_trans_from_write_to_idle);
 
 
-        // -------------------------------------------------------------------------
         // 6. READ_ADD -> IDLE
-        // -------------------------------------------------------------------------
         property p_trans_from_read_address_to_idle;
             @(posedge clk) disable iff (~rstn)
             (current_state == READ_ADD && ss_n) |=> (current_state == IDLE);
@@ -241,9 +229,7 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
         c_trans_from_read_address_to_idle: cover property(p_trans_from_read_address_to_idle);
 
 
-        // -------------------------------------------------------------------------
         // 7. READ_DATA -> IDLE
-        // -------------------------------------------------------------------------
         property p_trans_from_read_data_to_idle;
             @(posedge clk) disable iff (~rstn)
             (current_state == READ_DATA && ss_n) |=> (current_state == IDLE);
@@ -255,3 +241,4 @@ module SPI_slave(mosi, ss_n, rx_data, rx_valid, clk, rstn, tx_data, tx_valid, mi
 
     `endif
 endmodule
+

@@ -48,7 +48,6 @@ package RAM_scoreboard_pkg;
         endtask
 
         function void reference_model(RAM_seq_item item);
-
                 if(~ item.rstn)begin
                     dout_ref=0;
                     tx_valid_ref=0;
@@ -71,16 +70,15 @@ package RAM_scoreboard_pkg;
                             tx_valid_ref=0;
                         end
                         2'b11: begin 
-                            dout_ref=mem[rd_addr];
+                            dout_ref=(mem[rd_addr]=== 8'hxx)? 8'h0 : mem[rd_addr];
                             tx_valid_ref=1'b1;
                         end
                         default:begin
-                            dout_ref=0;
-                            tx_valid_ref=0;
+                            dout_ref=0; tx_valid_ref=0;
                         end
                         endcase
                     end
-                    else begin tx_valid_ref=0; dout_ref=0; end
+                    else begin tx_valid_ref=0;  end
                 end
         endfunction
 
@@ -88,7 +86,8 @@ package RAM_scoreboard_pkg;
         function void check_data(RAM_seq_item item);
            reference_model(item);
             if(item.dout !== dout_ref && item.tx_valid === tx_valid_ref) begin
-                `uvm_error("check_data", $sformatf("Data mismatch: dout_ref %0h, dout actual %0h , tx_valid_ref %0h, tx_valid actual %0h", dout_ref, item.dout, tx_valid_ref, item.tx_valid))
+                `uvm_error("check_data", $sformatf("Data mismatch: dout_ref %0h, dout actual %0h , tx_valid_ref %0h, tx_valid actual %0h", 
+                dout_ref, item.dout, tx_valid_ref, item.tx_valid))
                 error_count++;
             end
             else begin
@@ -103,3 +102,4 @@ package RAM_scoreboard_pkg;
         endfunction
     endclass
 endpackage
+

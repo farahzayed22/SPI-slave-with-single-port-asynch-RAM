@@ -11,3 +11,4 @@ class RAM_Config extends uvm_object;
     endfunction
 endclass
 endpackage
+

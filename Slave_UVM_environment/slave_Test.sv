@@ -6,7 +6,6 @@ package slave_Test_pkg;
     import slave_reset_seq_pkg::*;
     import slave_main_seq_pkg::*;
 
-
     class slave_Test extends uvm_test;
         `uvm_component_utils(slave_Test)
 
@@ -46,3 +45,4 @@ package slave_Test_pkg;
         endtask
     endclass
 endpackage
+
