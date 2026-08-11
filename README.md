@@ -7,7 +7,7 @@ This project implements an SPI Slave with Single-Port RAM Interface wrapped insi
 
 ### System Top Architecture (`SPI_wrapper`)
 
-![SPI Slave with Single Port RAM](images/spi_wrapper_block_diagram.png)
+![SPI Slave with Single Port RAM](spi_wrapper_block_diagram.png)
 
 ---
 
@@ -33,7 +33,7 @@ This project implements an SPI Slave with Single-Port RAM Interface wrapped insi
 The SPI Slave handles protocol frame synchronization, serial-to-parallel input conversion (`MOSI`), and parallel-to-serial output conversion (`MISO`).
 
 * **State Machine Mechanics**: 
-![FSM](images/FSM.png)
+![FSM](FSM.png)
     * Driven by a 5-state FSM:
     * `IDLE`: Default state on reset (rst_n = 0) or when Master is inactive (SS_n = 1).  
     * `CHK_CMD`: Entered when SS_n transitions to 0. Examines the first bit received on MOSI to distinguish between write (MOSI = 0) and read (MOSI = 1) operations. 
@@ -53,7 +53,7 @@ The verification environment is built on UVM to systematically validate the desi
 
 ### Verification Environment Hierarchy (`Wrapper_Top`)
 
-![UVM Verification Environment Architecture](images/wrapper_top.png)
+![UVM Verification Environment Architecture](wrapper_top.png)
 
 ---
 
