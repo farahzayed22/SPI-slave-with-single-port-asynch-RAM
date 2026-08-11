@@ -61,63 +61,38 @@ The verification environment is built on UVM to systematically validate the desi
 
 The verification environment is structured around three main sub-environments (`wrapper_env`, `slave_env`, and `RAM_env`) instantiated under the top-level `uvm_test`, interacting with the DUT (`SPI_wrapper`, `SPI_slave`, and `RAM`) through virtual interfaces.
 
-#### **1. Dynamic Objects (UVM Data/Sequence Level)**
+## **1. Dynamic Objects (UVM Data/Sequence Level)**
 * **`sequence` (Dynamic Object)**:
-  * Defines high-level stimulus scenarios including direct write, direct read, back-to-back RAM accesses, and constrained-random SPI transactions.
-  * Generates transaction objects (`Seq_item`) and pushes them to the driver via the sequencer.
 * **`Seq_item` (`uvm_sequence_item`)**:
-  * The data transaction object representing pin-level activity at the SPI protocol interface (`MOSI`, control commands, operand address/data).
-  * Contains randomized control and payload variables used by the driver to drive pin toggles.
-
----
-
-#### **2. Structural Components (`uvm_component`)**
+## **2. Structural Components (`uvm_component`)**
 * **`Wrapper_Top` (Top Module)**:
-  * SystemVerilog testbench instantiation wrapper.
-  * Connects physical interfaces (`Wrapper_Interface`, `slave_Interface`, `RAM_Interface`) to RTL modules (`SPI_wrapper`, `SPI_slave`, `RAM`) and registers virtual interfaces into the `uvm_config_db`.
-* **`uvm_test`**:
-  * Root verification component of the UVM hierarchy.
-  * Configures the environment, builds sub-environments (`wrapper_env`, `slave_env`, `RAM_env`), sets configuration objects into `uvm_config_db`, and executes sequences via UVM phases.
+* **`Wrapper_Test`**:
 * **`wrapper_env` (Active Environment)**:
-  * Top-level active environment responsible for stimulating and checking the complete integrated system (`SPI_wrapper`).
-  * **Active `uvm_agent`**:
-    * `uvm_sequencer`: Controls transaction flow between sequence and driver.
-    * `uvm_driver`: Converts transaction items (`Seq_item`) into bit-level driving signals on `Wrapper_Interface`.
-    * `uvm_monitor`: Passively samples signal activity on `Wrapper_Interface`, constructs transaction packets, and broadcasts them via analysis ports.
-  * **Checking & Coverage**:
+* **Active `uvm_agent`**:
+    * `uvm_sequencer`
+    * `uvm_driver`
+    * `uvm_monitor`
+* **Checking & Coverage**:
     * `uvm_scoreboard`: Compares sampled output transactions from the wrapper against an internal reference model (`wrapper_ref_model`).
-    * `Coverage_collector`: Implements covergroups to measure functional coverage across commands, data patterns, and execution paths.
-* **`slave_env` (Passive Sub-Environment)**:
-  * Dedicated sub-environment monitoring internal SPI state machine transitions and control outputs.
-  * **Passive `uvm_agent`**: Contains a passive `uvm_monitor` connected to `slave_Interface` to observe internal control lines (`rx_data`, state transitions, internal valid signals).
-  * **Checking & Coverage**: `uvm_scoreboard` and `Coverage_collector` perform localized checks and track state-machine coverage for isolated SPI Slave logic.
-* **`RAM_env` (Passive Sub-Environment)**:
-  * Dedicated sub-environment tracking direct memory access activity (RAM read/write cycles, address spaces).
-  * **Passive `uvm_agent`**: Contains a passive `uvm_monitor` tied to `RAM_Interface` monitoring memory enable, write enable, address lines, and read/write data buses.
-  * **Checking & Coverage**: `uvm_scoreboard` and `Coverage_collector` validate memory protocol timing, verify read/write integrity against a software memory array model, and measure address space coverage.
-
+    * `Coverage_collector`
+* **`slave_env` (Passive Sub-Environment)**
+  * **Passive `uvm_agent`**
+* **`RAM_env` (Passive Sub-Environment)**
+ 
 ---
 
 #### **3. Interface & Configuration Database Mechanism**
 * **Interfaces (`Wrapper_Interface`, `slave_Interface`, `RAM_Interface`)**: Physical SystemVerilog bundles providing signal connectivity between testbench components and DUT ports.
 * **Configuration Database (`uvm_config_db`)**:
   * **Interface Registration (`set`)**: `Wrapper_Top` puts physical interface handles into the database under specific string keys (`Wrapper_IF`, `slave_IF`, `RAM_IF`).
-  * **Configuration Objects (`set` / `get`)**: `uvm_test` creates configuration objects (`Wrapper_CFG`, `slave_CFG`, `RAM_CFG`) and sets them into `uvm_config_db`. Sub-environments execute `get()` calls during `build_phase` to retrieve configuration settings and virtual interface pointers seamlessly without hardcoded hierarchy paths.
-
 ---
 
 ### B. SystemVerilog Assertions (SVA) Coverage
 SystemVerilog assertions monitor design execution and signal stability:
 
-* **RAM Assertions (`RAM_SVA`)**:
-  * `a_reset_dout` / `a_reset_tx_valid`: Ensures outputs immediately reset to `0` when `rst_n` is asserted.
-  * `low_tx_valid`: Enforces that `tx_valid` remains `0` during write address, write data, and read address commands.
-  * `high_tx_valid`: Verifies `tx_valid` asserts for **exactly 1 clock cycle** during read data commands.
-* **Slave Assertions (`slave_SVA`)**:
-  * State Machine assertions verify next-state logic across `IDLE`, `CHK_CMD`, `WRITE`, `READ_ADD`, and `READ_DATA`.
-  * Frame protocol assertions check that 10-bit packages trigger `rx_valid` precisely after 10 clock cycles.
-* **Wrapper Assertions (`wrapper_SVA`)**:
-  * `p_miso_stable`: Enforces that `MISO` remains `$stable` when current operations are not read data.
+* **RAM Assertions (`RAM_SVA`)**
+* **Slave Assertions (`slave_SVA`)**
+* **Wrapper Assertions (`wrapper_SVA`)**
 
 ---
 
